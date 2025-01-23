@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+ * TODO: add protection from use without init
+ */
+
 #include <inttypes.h>
 #include <Arduino.h>
 
