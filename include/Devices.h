@@ -31,3 +31,13 @@ void init_motion_control()
 {
     motion_control.init(&servoL, &servoR);
 }
+
+/*===ASMR===*/
+#include "ASMR.h"
+
+ASMR asmr;
+
+void init_asmr()
+{
+    asmr.init(&motion_control);
+}

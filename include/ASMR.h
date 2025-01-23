@@ -131,6 +131,11 @@ private:
     }
 
 public:
+    void init(MotionControl *motion_control_)
+    {
+        motion_control = motion_control_;
+    }
+
     void addAction(Cyclogram cyc)
     {
         cycEnd = rotmod(cycEnd + 1);
@@ -157,7 +162,7 @@ public:
 
         // Drive at speeds
         motion_control->tick(ms.v_f0, ms.theta_i0);
-        Serial.println(String(ms.v_f0) + " " + String(ms.theta_i0) + " " + String(ms.is_completed));
+        Serial.println(" " + String(ms.v_f0) + " " + String(ms.theta_i0) + " " + String(ms.is_completed));
     }
 };
 

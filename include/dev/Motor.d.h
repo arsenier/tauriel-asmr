@@ -31,6 +31,14 @@ void drive_motor(int16_t pwm, int pin_dir, int pin_pwm)
         digitalWrite(pin_dir, HIGH);
         analogWrite(pin_pwm, 255 + pwm);
     }
+
+    // Serial.print(" Motor pin_dir: ");
+    // Serial.print(pin_dir);
+    // Serial.print(" pin_pwm: ");
+    // Serial.print(pin_pwm);
+    // Serial.print(" pwm: ");
+    Serial.print(" pwm: ");
+    Serial.print(pwm);
 }
 
 void drive_motorL(int16_t pwm)
@@ -53,13 +61,15 @@ void drive_motorR(int16_t pwm)
 MotorParams motorL_par = {
     .init_M = init_motorL,
     .drive_M = drive_motorL,
-    .get_U_supply = get_U_supply
+    .get_U_supply = get_U_supply,
+    .max_pwm = MAX_PWM_VALUE
 };
 
 MotorParams motorR_par = {
     .init_M = init_motorR,
     .drive_M = drive_motorR,
-    .get_U_supply = get_U_supply
+    .get_U_supply = get_U_supply,
+    .max_pwm = MAX_PWM_VALUE
 };
 
 void init_motors()
