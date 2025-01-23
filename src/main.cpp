@@ -2,10 +2,14 @@
 
 #include "ASMR.h"
 
+#include "Devices.h"
+
 ASMR asmr;
 
 void setup() {
     Serial.begin(9600);
+
+    init_encoders();
 
     asmr.addAction(FWD);
     asmr.addAction(SS90EL);
