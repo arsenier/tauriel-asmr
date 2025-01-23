@@ -6,10 +6,14 @@
 
 ASMR asmr;
 
-void setup() {
+void setup()
+{
     Serial.begin(9600);
 
     init_encoders();
+    init_motors();
+    init_servos();
+    init_motion_control();
 
     asmr.addAction(FWD);
     asmr.addAction(SS90EL);
@@ -18,7 +22,8 @@ void setup() {
     asmr.addAction(STOP);
 }
 
-void loop() {
+void loop()
+{
     delay(50);
     asmr.exec();
 }
