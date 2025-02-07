@@ -32,11 +32,6 @@ void drive_motor(int16_t pwm, int pin_dir, int pin_pwm)
         analogWrite(pin_pwm, 255 + pwm);
     }
 
-    // Serial.print(" Motor pin_dir: ");
-    // Serial.print(pin_dir);
-    // Serial.print(" pin_pwm: ");
-    // Serial.print(pin_pwm);
-    // Serial.print(" pwm: ");
     Serial.print(" pwm: ");
     Serial.print(pwm);
 }

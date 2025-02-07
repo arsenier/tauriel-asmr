@@ -60,6 +60,7 @@ int8_t get_AB_right()
     return get_AB(PIN_ENC_RIGHT_CLK_A, PIN_ENC_RIGHT_B);
 }
 
+/*===ENCODER PARAMS===*/
 EncoderParams encL_par = {
     .tick_to_rad = 1,
     .init_AB = init_left,

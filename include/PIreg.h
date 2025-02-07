@@ -2,35 +2,38 @@
 
 #include <Arduino.h>
 
+struct PIregParams
+{
+    float Ts;
+    float Kp;
+    float Ki;
+    float (*max_out)();
+};
+
 class PIreg
 {
 private:
     float I = 0;
-    float Kp;
-    float Ki;
-    float Ts;
-
-    float max_out;
+    PIregParams params;
 
     float out;
 
 public:
     const float &q_out = out;
 
-    PIreg(float Ts_, float Kp_, float Ki_, float max_out_)
+    PIreg(PIregParams params_)
     {
-        Ts = Ts_;
-        Kp = Kp_;
-        Ki = Ki_;
-        max_out = max_out_;
+        params = params_;
     }
 
     PIreg& tick(float in)
     {
-        out = Kp * in + Ki * I;
+        out = params.Kp * in + params.Ki * I;
+
+        float max_out = params.max_out();
 
         if (out == constrain(out, -max_out, max_out) || (in * out) < 0)
-            I += in * Ts;
+            I += in * params.Ts;
 
         return *this;
     }

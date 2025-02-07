@@ -8,11 +8,14 @@
 #include "PIreg.h"
 #include "Servo.h"
 
-VelEstimator vel_est_L(0.001, 0.1);
-VelEstimator vel_est_R(0.001, 0.1);
+VelEstimator vel_est_L(Ts_sec, VEL_ESTIMATOR_T_CONST);
+VelEstimator vel_est_R(Ts_sec, VEL_ESTIMATOR_T_CONST);
 
-PIreg vel_reg_L(0.001, 1, 1, 5);
-PIreg vel_reg_R(0.001, 1, 1, 5);
+PIregParams PIreg_params_L = {Ts_sec, PI_REG_KP, PI_REG_KI, get_U_supply};
+PIregParams PIreg_params_R = {Ts_sec, PI_REG_KP, PI_REG_KI, get_U_supply};
+
+PIreg vel_reg_L(PIreg_params_L);
+PIreg vel_reg_R(PIreg_params_R);
 
 Servo servoL, servoR;
 

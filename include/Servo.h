@@ -20,6 +20,7 @@ private:
     float w;
 
 public:
+    const float &q_phi = phi;
     const float &q_w_0 = w_0;
     const float &q_w = w;
 
@@ -37,7 +38,7 @@ public:
     Servo& tick(float w_0_)
     {
         w_0 = w_0_;
-        phi = enc->q_angle;
+        phi = enc->tick().q_angle;
         w = vel_estimator->tick(phi).q_out;
 
         float err = w_0 - w;

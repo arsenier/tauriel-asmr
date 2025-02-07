@@ -27,7 +27,7 @@ void Motor::init(MotorParams m_par_)
 
 void Motor::tick(float u)
 {
-    int16_t pwm_req = 255.0 * (u / m_par.get_U_supply());
+    int16_t pwm_req = 1.0 * m_par.max_pwm * (u / m_par.get_U_supply());
     pwm_req = constrain(pwm_req, -m_par.max_pwm, m_par.max_pwm);
     m_par.drive_M(pwm_req);
 }
