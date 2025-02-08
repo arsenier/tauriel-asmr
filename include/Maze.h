@@ -5,16 +5,6 @@
 #define MAZE_WIDTH 8
 #define MAZE_HEIGHT 4
 
-#define MAZE_MEM_SIZE (MAZE_WIDTH * MAZE_HEIGHT / 2)
-
-#define SET_WALL(stored_wall, wall) stored_wall = (wall == Maze::UNKNOWN ? stored_wall : wall)
-
-struct Vec2
-{
-    int16_t x;
-    int16_t y;
-};
-
 /**
  * How much information is needed to represent all of the maze?
  *
@@ -30,6 +20,16 @@ struct Vec2
  * So, 4 bits per cell, MAZE_WIDTH * MAZE_HEIGHT cells,
  * MAZE_MEM_SIZE = MAZE_WIDTH * MAZE_HEIGHT / 2 bytes
  */
+
+#define MAZE_MEM_SIZE (MAZE_WIDTH * MAZE_HEIGHT / 2)
+
+#define SET_WALL(stored_wall, wall) stored_wall = (wall == Maze::UNKNOWN ? stored_wall : wall)
+
+struct Vec2
+{
+    int16_t x;
+    int16_t y;
+};
 
 class Maze
 {
