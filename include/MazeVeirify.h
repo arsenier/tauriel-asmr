@@ -10,49 +10,12 @@ void mazeVeirify()
 
     drawMaze(maze, MAZE_WIDTH, MAZE_HEIGHT);
 
-    {
-    Vec2 coord = {1, 1};
-    Maze::Cell cell_walls = {
-        .left  = Maze::OPEN,
-        .down  = Maze::OPEN,
-        .up    = Maze::OPEN,
-        .right = Maze::OPEN
-    };
-    maze.setWall(coord, cell_walls);
-    }
+    maze.setWall(Vec2{1, 1}, Maze::Cell{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
+    maze.setWall(Vec2{6, 2}, Maze::Cell{.left = Maze::WALL, .down = Maze::OPEN, .up = Maze::WALL, .right = Maze::OPEN});
+    maze.setWall(Vec2{3, 1}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
+    maze.setWall(Vec2{2, 3}, Maze::Cell{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
+    maze.setWall(Vec2{4, 3}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
 
-    {
-    Vec2 coord = {3, 1};
-    Maze::Cell cell_walls = {
-        .left  = Maze::WALL,
-        .down  = Maze::WALL,
-        .up    = Maze::WALL,
-        .right = Maze::WALL
-    };
-    maze.setWall(coord, cell_walls);
-    }
-
-    {
-    Vec2 coord = {2, 3};
-    Maze::Cell cell_walls = {
-        .left  = Maze::OPEN,
-        .down  = Maze::OPEN,
-        .up    = Maze::OPEN,
-        .right = Maze::OPEN
-    };
-    maze.setWall(coord, cell_walls);
-    }
-
-    {
-    Vec2 coord = {4, 3};
-    Maze::Cell cell_walls = {
-        .left  = Maze::WALL,
-        .down  = Maze::WALL,
-        .up    = Maze::WALL,
-        .right = Maze::WALL
-    };
-    maze.setWall(coord, cell_walls);
-    }
     Serial.println();
 
     drawMaze(maze, MAZE_WIDTH, MAZE_HEIGHT);
@@ -60,14 +23,7 @@ void mazeVeirify()
     uint32_t start = micros();
     for(int i = 0; i < 10000; i++)
     {
-        Vec2 coord = {4, 3};
-        Maze::Cell cell_walls = {
-            .left  = Maze::WALL,
-            .down  = Maze::WALL,
-            .up    = Maze::WALL,
-            .right = Maze::WALL
-        };
-        maze.setWall(coord, cell_walls);
+        maze.setWall(Vec2{4, 3}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
     }
     uint32_t end = micros();
 

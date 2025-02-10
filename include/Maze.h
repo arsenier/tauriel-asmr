@@ -79,6 +79,9 @@ public:
         }
     }
 
+    /**
+     * @brief Установить стенку в клетке с данными координатами
+     */
     void setWall(Vec2 coord, Cell cell_walls)
     {
         int cell_id = coord.y * MAZE_WIDTH / 2 + coord.x / 2;
@@ -157,6 +160,9 @@ public:
         return map[cell_id].hiright;
     }
 
+    /**
+    * @brief Получить информацию о стенках в клетке с данными координатами
+    */
     Cell getWalls(Vec2 coord)
     {
         int cell_id = coord.y * MAZE_WIDTH / 2 + coord.x / 2;
