@@ -297,6 +297,7 @@ public:
 
 <details>
 <summary>Полный код класса Maze</summary>
+
 ```c++
 #pragma once
 
@@ -480,11 +481,14 @@ public:
     }
 };
 ```
+
 </details>
 
 <details>
 <summary>Пример использования</summary>
+
 `MazeVeirify.h`
+
 ```c++
 #pragma once
 
@@ -551,5 +555,6 @@ void loop()
 {
 }
 ```
+
 </details>
 
