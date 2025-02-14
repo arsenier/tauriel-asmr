@@ -10,11 +10,11 @@ void mazeVeirify()
 
     drawMaze(maze, MAZE_WIDTH, MAZE_HEIGHT);
 
-    maze.setWall(Vec2{1, 1}, Maze::Cell{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
-    maze.setWall(Vec2{6, 2}, Maze::Cell{.left = Maze::WALL, .down = Maze::OPEN, .up = Maze::WALL, .right = Maze::OPEN});
-    maze.setWall(Vec2{3, 1}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
-    maze.setWall(Vec2{2, 3}, Maze::Cell{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
-    maze.setWall(Vec2{4, 3}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
+    maze.setWall(Vec2{1, 1}, Maze::CellWalls{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
+    maze.setWall(Vec2{6, 2}, Maze::CellWalls{.left = Maze::WALL, .down = Maze::OPEN, .up = Maze::WALL, .right = Maze::OPEN});
+    maze.setWall(Vec2{3, 1}, Maze::CellWalls{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
+    maze.setWall(Vec2{2, 3}, Maze::CellWalls{.left = Maze::OPEN, .down = Maze::OPEN, .up = Maze::OPEN, .right = Maze::OPEN});
+    maze.setWall(Vec2{4, 3}, Maze::CellWalls{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
 
     Serial.println();
 
@@ -23,7 +23,7 @@ void mazeVeirify()
     uint32_t start = micros();
     for(int i = 0; i < 10000; i++)
     {
-        maze.setWall(Vec2{4, 3}, Maze::Cell{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
+        maze.setWall(Vec2{4, 3}, Maze::CellWalls{.left = Maze::WALL, .down = Maze::WALL, .up = Maze::WALL, .right = Maze::WALL});
     }
     uint32_t end = micros();
 
@@ -36,7 +36,7 @@ void mazeVeirify()
     for(int i = 0; i < 10000; i++)
     {
         Vec2 coord = {4, 3};
-        Maze::Cell cell_walls = maze.getWalls(coord);
+        Maze::CellWalls cell_walls = maze.getWalls(coord);
     }
     end = micros();
     Serial.print("10000x getWalls time [us]: ");

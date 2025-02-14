@@ -15,7 +15,7 @@
  *       | |  `south wall of cell B
  *       | `east wall of cell A
  *       `south wall of cell A
- * Each wall is represented by a Wall enum
+ * Each wall is represented by a WallState enum
  *
  * So, 4 bits per cell, MAZE_WIDTH * MAZE_HEIGHT cells,
  * MAZE_MEM_SIZE = MAZE_WIDTH * MAZE_HEIGHT / 2 bytes
@@ -34,28 +34,28 @@ struct Vec2
 class Maze
 {
 public:
-    enum Wall : uint8_t
+    enum WallState : uint8_t
     {
         UNKNOWN = 0,
         WALL,
         OPEN
         // TODO: add more wall types
     };
-    struct Cell
+    struct CellWalls
     {
-        Wall left : 2;
-        Wall down : 2;
-        Wall up : 2;
-        Wall right : 2;
+        WallState left : 2;
+        WallState down : 2;
+        WallState up : 2;
+        WallState right : 2;
     };
 private:
 
     struct CellStoreRaw
     {
-        Wall hidown : 2;
-        Wall hiright : 2;
-        Wall lodown : 2;
-        Wall loright : 2;
+        WallState hidown : 2;
+        WallState hiright : 2;
+        WallState lodown : 2;
+        WallState loright : 2;
     };
 
     enum LoHi
@@ -82,7 +82,7 @@ public:
     /**
      * @brief Установить стенку в клетке с данными координатами
      */
-    void setWall(Vec2 coord, Cell cell_walls)
+    void setWall(Vec2 coord, CellWalls cell_walls)
     {
         int cell_id = coord.y * MAZE_WIDTH / 2 + coord.x / 2;
         int cell_offset = coord.x % 2;
@@ -115,7 +115,7 @@ public:
         }
     }
 
-    Wall getUpWall(int cell_id, int cell_offset)
+    WallState getUpWall(int cell_id, int cell_offset) const
     {
         if(cell_id >= MAZE_WIDTH / 2)
         {
@@ -127,7 +127,7 @@ public:
         }
         return WALL;
     }
-    Wall getLeftWall(int cell_id, int cell_offset)
+    WallState getLeftWall(int cell_id, int cell_offset) const
     {
         if(cell_offset == LO)
         {
@@ -142,7 +142,7 @@ public:
         return map[cell_id - 1].loright;
     }
 
-    Wall getDownWall(int cell_id, int cell_offset)
+    WallState getDownWall(int cell_id, int cell_offset) const
     {
         if(cell_offset == LO)
         {
@@ -151,7 +151,7 @@ public:
         return map[cell_id].hidown;
     }
 
-    Wall getRightWall(int cell_id, int cell_offset)
+    WallState getRightWall(int cell_id, int cell_offset) const
     {
         if(cell_offset == LO)
         {
@@ -163,12 +163,12 @@ public:
     /**
     * @brief Получить информацию о стенках в клетке с данными координатами
     */
-    Cell getWalls(Vec2 coord)
+    CellWalls getWalls(Vec2 coord) const
     {
         int cell_id = coord.y * MAZE_WIDTH / 2 + coord.x / 2;
         int cell_offset = coord.x % 2;
 
-        Cell cell =
+        CellWalls cell =
         {
             .left  = getLeftWall(cell_id, cell_offset),
             .down  = getDownWall(cell_id, cell_offset),
