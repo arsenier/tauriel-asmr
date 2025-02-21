@@ -24,3 +24,7 @@
 
 /*===ASMR===*/
 #define CYC_PROG_BUF_SIZE 64
+
+/*===MAZE===*/
+#define MAZE_WIDTH 8
+#define MAZE_HEIGHT 6

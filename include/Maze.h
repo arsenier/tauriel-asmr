@@ -1,9 +1,7 @@
 #pragma once
 
 #include <inttypes.h>
-
-#define MAZE_WIDTH 8
-#define MAZE_HEIGHT 4
+#include "Config.h"
 
 /**
  * How much information is needed to represent all of the maze?
@@ -76,6 +74,18 @@ public:
             map[i].loright = UNKNOWN;
             map[i].hidown = UNKNOWN;
             map[i].hiright = UNKNOWN;
+        }
+        for(int x = 0; x < MAZE_WIDTH; x++)
+        {
+            CellWalls cell = {.left = UNKNOWN, .down = WALL, .up = UNKNOWN, .right = UNKNOWN};
+            Vec2 coord = {x, MAZE_HEIGHT - 1};
+            setWall(coord, cell);
+        }
+        for(int y = 0; y < MAZE_HEIGHT; y++)
+        {
+            CellWalls cell = {.left = UNKNOWN, .down = UNKNOWN, .up = UNKNOWN, .right = WALL};
+            Vec2 coord = {MAZE_WIDTH - 1, y};
+            setWall(coord, cell);
         }
     }
 
