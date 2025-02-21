@@ -90,33 +90,66 @@ public:
             if(cell.left != Maze::WALL)
             {
                 Vec2 left = {current.x - 1, current.y};
-                whereFrom[left.x][left.y] = WhereFrom::RIGHT;
-                queue.push_back(left);
+                if(whereFrom[left.x][left.y] == WhereFrom::UNKNOWN)
+                {
+                    whereFrom[left.x][left.y] = WhereFrom::RIGHT;
+
+                    if(left.x == start.x && left.y == start.y)
+                    {
+                        return;
+                    }
+                    queue.push_back(left);
+                }
             }
             if(cell.right != Maze::WALL)
             {
                 Vec2 right = {current.x + 1, current.y};
-                whereFrom[right.x][right.y] = WhereFrom::LEFT;
-                queue.push_back(right);
+                if(whereFrom[right.x][right.y] == WhereFrom::UNKNOWN)
+                {
+                    whereFrom[right.x][right.y] = WhereFrom::LEFT;
+
+                    if(right.x == start.x && right.y == start.y)
+                    {
+                        return;
+                    }
+                    queue.push_back(right);
+                }
             }
             if(cell.up != Maze::WALL)
             {
                 Vec2 up = {current.x, current.y - 1};
-                whereFrom[up.x][up.y] = WhereFrom::DOWN;
-                queue.push_back(up);
+                if(whereFrom[up.x][up.y] == WhereFrom::UNKNOWN)
+                {
+                    whereFrom[up.x][up.y] = WhereFrom::DOWN;
+
+                    if(up.x == start.x && up.y == start.y)
+                    {
+                        return;
+                    }
+                    queue.push_back(up);
+                }
             }
             if(cell.down != Maze::WALL)
             {
                 Vec2 down = {current.x, current.y + 1};
-                whereFrom[down.x][down.y] = WhereFrom::UP;
-                queue.push_back(down);
+                if(whereFrom[down.x][down.y] == WhereFrom::UNKNOWN)
+                {
+                    whereFrom[down.x][down.y] = WhereFrom::UP;
+
+                    if(down.x == start.x && down.y == start.y)
+                    {
+                        return;
+                    }
+                    queue.push_back(down);
+                }
             }
         }
     }
 
     // FIX: Remove nafig
-    int getWhereFrom(Vec2 coord)
+    char getWhereFrom(Vec2 coord)
     {
-        return (int)whereFrom[coord.x][coord.y];
+        char symbs[] = {'X', 'L', 'D', 'U', 'R'};
+        return symbs[(int)whereFrom[coord.x][coord.y]];
     }
 };
